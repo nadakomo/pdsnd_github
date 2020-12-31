@@ -13,5 +13,6 @@ new_york_city.csv
 washington.csv
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
+This project was made as requirement for complettion of nanodegree in udacity
+link to the course: https://www.udacity.com/course/programming-for-data-science-nanodegree--nd104
 
