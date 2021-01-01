@@ -18,8 +18,8 @@ def get_filters():
     city = input("Enter city name: \n").lower()
     while city not in (CITY_DATA):
         city = input("Enter city name: \n").lower()
-    month = input("Enter month name or all: \n").lower()
-    day = input("Enter day name or all: \n").lower()
+        month = input("Enter one of the following months january/february/march/april/may/june: \n").lower()
+        day = input("Enter day name or all: \n").lower()
     
     print('-'*40)
     return city, month, day
@@ -46,7 +46,6 @@ def load_data(city, month, day):
         months = ['january', 'february', 'march', 'april', 'may', 'june']
         month = months.index(month) + 1
         df = df[df['month'] == month]
-
     if day != 'all':
         df = df[df['day_of_week'] == day.title()]
 
@@ -58,7 +57,6 @@ def time_stats(df):
 
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
-    
 
     most_month = df['month'].mode()[0]
     print('Most common month:', most_month)
@@ -79,10 +77,8 @@ def station_stats(df):
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
 
-    print(df['Start Station'].mode()) 
-
+    print(df['Start Station'].mode())
     print(df['End Station'].mode())
-
     print(df.groupby(['Start Station','End Station']).size().nlargest(1))
 
     print("\nThis took %s seconds." % (time.time() - start_time))
@@ -94,36 +90,29 @@ def trip_duration_stats(df):
 
     print('\nCalculating Trip Duration...\n')
     start_time = time.time()
-
     print(df['Trip Duration'].sum())
-
     print(df['Trip Duration'].mean())
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
 
-def user_stats(df):
+def user_info(df):
     """Displays statistics on bikeshare users."""
 
     print('\nCalculating User Stats...\n')
     start_time = time.time()
-
     print(df['User Type'].value_counts())
-    
     try:
         print(df['Gender'].value_counts())
     except KeyError as e:
         print("washington has no column for: {}".format(e))
-    
     try:
         print(df['Birth Year'].max())
         print(df['Birth Year'].min())
         print(df['Birth Year'].mode())
     except KeyError as e:
         print("washington has no column for: {}".format(e))
-
-
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
     
@@ -146,7 +135,7 @@ def main():
         time_stats(df)
         station_stats(df)
         trip_duration_stats(df)
-        user_stats(df)
+        user_info(df)
         display_data(df)
               
         restart = input('\nWould you like to restart? Enter yes or no.\n')
