@@ -18,7 +18,7 @@ def get_filters():
     city = input("Enter city name: \n").lower()
     while city not in (CITY_DATA):
         city = input("Enter city name: \n").lower()
-        month = input("Enter month name or all: \n").lower()
+        month = input("Enter one of the following months january/february/march/april/may/june: \n").lower()
         day = input("Enter day name or all: \n").lower()
     
     print('-'*40)
